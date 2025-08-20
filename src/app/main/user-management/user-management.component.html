@@ -1,0 +1,65 @@
+<div class="min-h-screen bg-gray-50">
+  <div class="bg-white shadow-sm border-b mb-8">
+    <div class="flex items-center justify-between px-6 py-4 ">
+      <h1 class="font-semibold text-xl">List Of Users</h1>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 py-6">
+    <form [formGroup]="filterForm" class="flex flex-wrap gap-4 items-center mb-4">
+      <select formControlName="status" class="rounded border border-gray-300 px-3 py-1">
+        <option value="All">All</option>
+        <option value="active">Active</option>
+        <option value="blocked">Blocked</option>
+      </select>
+      <input formControlName="query" type="search" placeholder="Enter Email/Name/Phone" class="border border-gray-300 rounded px-3 py-1" />
+      <input formControlName="city" type="search" placeholder="City Name" class="border border-gray-300 rounded px-3 py-1" />
+      <button type="button" class="px-3 py-1 bg-blue-600 text-white rounded" (click)="applyFilters()">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+    </form>
+
+    <div class="overflow-auto border border-gray-200 rounded shadow">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50 text-gray-500 font-semibold">
+          <tr>
+            <th class="px-4 py-2 text-left">Name</th>
+            <th class="px-4 py-2 text-left">Email</th>
+            <th class="px-4 py-2 text-left">City</th>
+            <th class="px-4 py-2 text-left">Mobile</th>
+            <th class="px-4 py-2 text-left">Created On</th>
+            <th class="px-4 py-2 text-left">Referral Code</th>
+            <th class="px-4 py-2 text-left">Status</th>
+            <th class="px-4 py-2 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of filteredUsers" class="hover:bg-gray-50 border-b border-gray-200">
+            <td class="px-4 py-2 font-semibold cursor-pointer" [title]="user.name">{{ user.name ? user.name : '--' }}</td>
+            <td class="px-4 py-2">{{ user.email ? user.email : '--' }}</td>
+            <td class="px-4 py-2">{{ user.city ? user.city : '--' }}</td>
+            <td class="px-4 py-2">{{ user.mobile }}</td>
+            <td class="px-4 py-2">{{ formatTimestamp(user.createdOn) }}</td>
+            <td class="px-4 py-2">{{ user.referralCode }}</td>
+            <td class="px-4 py-2">
+              <span [ngClass]="{ 'text-green-600': user.status === 'active', 'text-red-600': user.status === 'blocked' }" class="capitalize font-semibold">
+                {{ user.status }}
+              </span>
+            </td>
+            <td class="px-4 py-2">
+              <button title="Toggle Status" (click)="toggleStatus(user)" class="mr-3">
+                <i [class]="user.status === 'active' ? 'fas fa-toggle-on text-green-600' : 'fas fa-toggle-off text-red-600'"></i>
+              </button>
+              <button title="Edit User" (click)="editUser(user)">
+                <i class="fas fa-pencil-alt text-gray-700 hover:text-blue-600"></i>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="filteredUsers.length === 0">
+            <td colspan="8" class="text-center py-6 text-gray-400">No users found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

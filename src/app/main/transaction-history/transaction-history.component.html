@@ -1,0 +1,143 @@
+<div class="min-h-screen bg-gray-50">
+  <div class="bg-white shadow-sm border-b mb-8">
+    <div class="flex items-center justify-between px-6 py-4">
+      <h1 class="font-semibold text-xl">View Invoice</h1>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 py-4">
+    <form [formGroup]="filterForm" class="flex flex-wrap gap-4 items-center mb-4">
+      <input formControlName="orderNumber" type="text" placeholder="Enter Order No." class="border border-gray-300 rounded px-3 py-1 w-48" />
+      <input formControlName="driverName" type="text" placeholder="Enter Driver-Name" class="border border-gray-300 rounded px-3 py-1 w-48" />
+      <input formControlName="from" type="date" class="border border-gray-300 rounded px-3 py-1 w-40" />
+      <input formControlName="to" type="date" class="border border-gray-300 rounded px-3 py-1 w-40" />
+      <button type="button" class="rounded-full border border-blue-300 p-2 text-blue-600 hover:bg-blue-100" (click)="applyFilters()">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+
+    <div class="flex gap-4 py-4">
+      <button class="bg-blue-600 text-black rounded px-4 py-2 hover:bg-blue-800" (click)="downloadCSV()">
+        <i class="fas fa-file-csv mr-2"></i>Download CSV
+      </button>
+      <button
+        class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-800"
+        [disabled]="!selectedTransaction"
+        (click)="exportPDF()"
+      >
+        <i class="fas fa-file-pdf mr-2"></i>Download PDF Invoice
+      </button>
+    </div>
+
+    <div class="overflow-x-auto border border-gray-200 rounded-lg shadow-lg">
+      <table class="min-w-full text-left divide-y divide-gray-200 cursor-pointer">
+        <thead>
+          <tr class="bg-gray-50 text-gray-500 font-semibold">
+            <th class="px-4 py-2">Order Number</th>
+            <th class="px-4 py-2">Driver Name</th>
+            <th class="px-4 py-2">Payment Method</th>
+            <th class="px-4 py-2">Creation Date</th>
+            <th class="px-4 py-2">Order Amount</th>
+            <th class="px-4 py-2">Delivery Tip</th>
+            <th class="px-4 py-2">Payout Status</th>
+            <th class="px-4 py-2">Vendor Share</th>
+            <th class="px-4 py-2">Driver Share</th>
+            <th class="px-4 py-2">Coupon Type</th>
+            <th class="px-4 py-2">D2D Share</th>
+            <th class="px-4 py-2">GST</th>
+            <th class="px-4 py-2">Invoice Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let tx of filtered"
+            [ngClass]="{ 'bg-blue-100': selectedTransaction?.orderNumber === tx.orderNumber }"
+            (click)="selectTransaction(tx)"
+            class="border-b-2 border-red-300 hover:bg-blue-50"
+          >
+            <td class="px-4 py-2">{{ tx.orderNumber }}</td>
+            <td class="px-4 py-2">
+              <span
+                [ngClass]="{ 'text-blue-700 font-semibold underline cursor-pointer': tx.driverName && tx.driverName !== '--' }"
+              >
+                {{ tx.driverName || '--' }}
+              </span>
+            </td>
+            <td class="px-4 py-2">{{ tx.paymentMethod }}</td>
+            <td class="px-4 py-2">{{ formatDate(tx.creationDate ?? 0) }}</td>
+            <td class="px-4 py-2 text-blue-700 font-semibold">{{ formatMoney(tx.orderAmount) }}</td>
+            <td class="px-4 py-2">{{ tx.deliveryTip != null ? formatMoney(tx.deliveryTip) : '--' }}</td>
+            <td class="px-4 py-2">{{ tx.payoutStatus }}</td>
+            <td class="px-4 py-2 text-blue-700 font-semibold">{{ formatMoney(tx.vendorShare) }}</td>
+            <td class="px-4 py-2">{{ tx.driverShare }}</td>
+            <td class="px-4 py-2">{{ tx.couponType || '--' }}</td>
+            <td class="px-4 py-2 text-blue-700 font-semibold">{{ formatMoney(tx.d2dShare) }}</td>
+            <td class="px-4 py-2">{{ tx.gst ?? '--' }}</td>
+            <td class="px-4 py-2 capitalize">
+              <span
+                [ngClass]="{
+                  'text-green-600 font-semibold': tx.invoiceStatus === 'success',
+                  'text-red-600 font-semibold': tx.invoiceStatus === 'failure'
+                }"
+                >{{ tx.invoiceStatus }}</span
+              >
+            </td>
+          </tr>
+          <tr *ngIf="filtered.length === 0">
+            <td colspan="13" class="text-center py-8 text-gray-400">No transactions found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Hidden invoice template for PDF export -->
+    <div
+      id="invoice-template"
+      style="width:210mm; background:white; padding:20px; display:none; font-family:sans-serif;"
+    >
+      <h2>Invoice for Order #{{ selectedTransaction?.orderNumber }}</h2>
+      <p>Date: {{ selectedTransaction ? formatDate(selectedTransaction.creationDate) : '' }}</p>
+      <p>Driver Name: {{ selectedTransaction?.driverName }}</p>
+      <p>Payment Method: {{ selectedTransaction?.paymentMethod }}</p>
+
+      <table style="width:100%; border-collapse: collapse;" border="1">
+        <tr>
+          <td>Order Amount</td>
+          <td>{{ selectedTransaction ? formatMoney(selectedTransaction.orderAmount) : '' }}</td>
+        </tr>
+        <tr>
+          <td>Delivery Tip</td>
+          <td>{{ selectedTransaction?.deliveryTip ? formatMoney(selectedTransaction.deliveryTip) : '-' }}</td>
+        </tr>
+        <tr>
+          <td>Payout Status</td>
+          <td>{{ selectedTransaction?.payoutStatus }}</td>
+        </tr>
+        <tr>
+          <td>Vendor Share</td>
+          <td>{{ selectedTransaction ? formatMoney(selectedTransaction.vendorShare) : '' }}</td>
+        </tr>
+        <tr>
+          <td>Driver Share</td>
+          <td>{{ selectedTransaction?.driverShare }}</td>
+        </tr>
+        <tr>
+          <td>Coupon Type</td>
+          <td>{{ selectedTransaction?.couponType || '-' }}</td>
+        </tr>
+        <tr>
+          <td>D2D Share</td>
+          <td>{{ selectedTransaction ? formatMoney(selectedTransaction.d2dShare) : '' }}</td>
+        </tr>
+        <tr>
+          <td>GST</td>
+          <td>{{ selectedTransaction?.gst != null ? selectedTransaction.gst : '-' }}</td>
+        </tr>
+        <tr>
+          <td>Invoice Status</td>
+          <td>{{ selectedTransaction?.invoiceStatus }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

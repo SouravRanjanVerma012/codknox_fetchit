@@ -1,0 +1,13 @@
+<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg" style="vector-effect: non-scaling-stroke;" stroke="null">
+
+ <g stroke="null">
+  <title stroke="null">background</title>
+  <rect stroke="null" fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g stroke="null">
+  <path stroke="null" d="m0.22983,31.323107c0.417535,1.670137 0.17771,1.906832 0.417535,2.922743c0.107253,0.45433 0.626302,1.670139 1.043836,2.713974c0.417535,1.043839 1.769788,3.231159 2.922742,4.384113c1.152956,1.152958 3.030326,2.614925 4.175346,3.966579c1.160814,1.370296 3.932993,4.22253 6.263019,5.845486c3.088279,2.151108 5.443706,3.942287 8.350692,5.845482c3.778555,2.473808 5.42795,3.966579 6.054253,4.384113l2.713974,1.670139l0.208767,0.208767l0.208767,0" id="svg_45" fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="none"/>
+  <ellipse stroke="null" ry="26.304679" rx="26.304679" id="svg_49" cy="40.717636" cx="38.691213" stroke-opacity="null" stroke-width="null" fill="#ff7b00"/>
+  <ellipse stroke="null" ry="26.304679" rx="6.993703" id="svg_51" cy="63.249578" cx="40.0482" stroke-opacity="null" stroke-width="null" fill="#ff7b00"/>
+  <line stroke="null" style="vector-effect: non-scaling-stroke;" stroke-linecap="null" stroke-linejoin="null" id="svg_52" y2="75.233828" x2="45.114799" y1="37.029418" x1="30.501088" fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="none"/>
+ </g>
+</svg>

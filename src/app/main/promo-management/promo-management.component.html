@@ -1,0 +1,188 @@
+<div class="min-h-screen bg-gray-50">
+    <div class="flex justify-between items-center bg-white shadow-sm border-b px-6 py-4 mb-6">
+      <h1 class="text-xl font-semibold">List of Coupon</h1>
+      <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700" (click)="showAddForm()">
+        <i class="fas fa-plus mr-2"></i>Add Coupon
+      </button>
+    </div>
+  
+    <form [formGroup]="filterForm" class="flex flex-wrap gap-3 mb-4">
+      <select formControlName="status" class="border rounded px-3 py-1 text-gray-700">
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+        <option value="All">All</option>
+      </select>
+      <select formControlName="type" class="border rounded px-3 py-1 text-gray-700">
+        <option value="All">All Type</option>
+        <option value="coupon">Coupon</option>
+        <option value="promo">Promo</option>
+      </select>
+      <input formControlName="code" placeholder="Enter coupon code" class="border rounded px-3 py-1 w-56" />
+      <input type="date" formControlName="from" class="border rounded px-3 py-1 text-gray-700" />
+      <input type="date" formControlName="to" class="border rounded px-3 py-1 text-gray-700" />
+      <button type="button" class="rounded border border-blue-400 px-3 py-1 text-blue-600 hover:bg-blue-100" (click)="applyFilters()">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+    </form>
+  
+    <div class="overflow-auto border border-gray-300 rounded shadow">
+      <table class="min-w-full divide-y divide-gray-200 text-sm">
+        <thead>
+          <tr class="bg-gray-50 text-gray-500 font-semibold">
+            <th class="p-2">Coupon Code</th>
+            <th class="p-2">Description</th>
+            <th class="p-2">Coupon Type</th>
+            <th class="p-2">Created For</th>
+            <th class="p-2">Min Order Price</th>
+            <th class="p-2">Start Time</th>
+            <th class="p-2">End Time</th>
+            <th class="p-2">Max Redemption</th>
+            <th class="p-2">Redemption Count</th>
+            <th class="p-2">Per User Limit</th>
+            <th class="p-2">Discount Type</th>
+            <th class="p-2">Created On</th>
+            <th class="p-2">Status</th>
+            <th class="p-2">Disable Coupon</th>
+            <th class="p-2">Actions</th>
+            <th class="p-2">Audit Logs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of filteredCoupons" class="border-b border-red-300">
+            <td class="p-2 font-semibold">{{ c.code }}</td>
+            <td class="p-2" title="{{ c.description }}">{{ short(c.description) }}</td>
+            <td class="p-2">{{ c.couponType }}</td>
+            <td class="p-2">{{ c.createdFor }}</td>
+            <td class="p-2">{{ c.minOrderPrice }}</td>
+            <td class="p-2">{{ formatDate(c.startTime) }}</td>
+            <td class="p-2">{{ formatDate(c.endTime) }}</td>
+            <td class="p-2">{{ c.maxRedemption }}</td>
+            <td class="p-2">{{ c.redemptionCount }}</td>
+            <td class="p-2">{{ c.perUserLimit }}</td>
+            <td class="p-2">{{ c.discountType }}</td>
+            <td class="p-2">{{ formatDate(c.createdOn) }}</td>
+            <td class="p-2">
+              <span [ngClass]="{'text-green-600': c.status === 'active', 'text-red-600': c.status === 'inactive'}" class="capitalize">
+                {{ c.status }}
+              </span>
+            </td>
+            <td class="p-2">
+              <button *ngIf="!c.isDisabled" (click)="disableCoupon(c)" class="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-500">Disable</button>
+              <button *ngIf="c.isDisabled" (click)="enableCoupon(c)" class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">Enable</button>
+            </td>
+            <td class="p-2 space-x-2">
+              <button (click)="showEditForm(c)" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Edit</button>
+            </td>
+            <td>
+                <button (click)="deleteCoupon(c)" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Delete</button>
+
+            </td>
+            <td class="p-2 text-center">
+              <button (click)="openAuditLog(c)" class="hover:text-gray-700" title="Audit Logs">
+                <i class="fas fa-file"></i>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="filteredCoupons.length === 0">
+            <td colspan="16" class="text-center p-6 text-gray-400">No coupons found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Coupon Form Modal -->
+    <div *ngIf="showForm" class="fixed inset-0 bg-gray-300 bg-opacity-40 flex items-center justify-center z-50">
+      <div class="bg-white rounded-xl shadow-lg p-10 w-full max-w-5xl max-h-[90vh] overflow-y-auto relative">
+        <form [formGroup]="form" (ngSubmit)="saveCoupon()">
+          <div class="grid grid-cols-2 gap-8">
+            <div>
+              <h2 class="font-semibold mb-2">Coupon Information</h2>
+              <label>Coupon Code</label>
+              <input formControlName="code" placeholder="Coupon Code" class="w-full border-b p-1 mb-3" />
+              <div *ngIf="form.get('code')?.invalid && form.get('code')?.touched" class="text-red-600 text-sm">Required</div>
+  
+              <label>Store Type</label>
+              <select formControlName="storeType" class="w-full border p-1 mb-3 rounded">
+                <option value="">Select Store Type</option>
+                <option *ngFor="let st of storeTypes" [value]="st">{{st}}</option>
+              </select>
+              <div *ngIf="form.get('storeType')?.invalid && form.get('storeType')?.touched" class="text-red-600 text-sm">Required</div>
+            </div>
+  
+            <div>
+              <h2 class="font-semibold mb-2">Description</h2>
+              <input formControlName="description" placeholder="Description" class="w-full border-b p-1 mb-3" />
+              <div *ngIf="form.get('description')?.invalid && form.get('description')?.touched" class="text-red-600 text-sm">Required</div>
+  
+              <div class="flex items-center mb-5">
+                <label class="mr-3">Coupon For First Order</label>
+                <input type="checkbox" formControlName="isFirstOrder" class="w-5 h-5" />
+              </div>
+            </div>
+          </div>
+  
+          <div class="grid grid-cols-2 gap-8">
+            <div>
+              <h2 class="font-semibold mb-2">Coupon Validation</h2>
+              <input formControlName="startTime" type="date" class="w-full border p-1 mb-5 rounded" />
+            </div>
+            <div>
+              <input formControlName="endTime" type="date" class="w-full border p-1 mb-5 rounded" />
+            </div>
+          </div>
+  
+          <div class="grid grid-cols-2 gap-8">
+            <div>
+              <h2 class="font-semibold mb-3">Discount Type</h2>
+              <div class="flex space-x-5">
+                <label><input type="radio" formControlName="discountType" value="percentage" /> Percentage Value</label>
+                <label><input type="radio" formControlName="discountType" value="fixed" /> Fixed Value</label>
+              </div>
+  
+              <div *ngIf="form.get('discountType')?.value === 'percentage'">
+                <input type="number" formControlName="percentageValue" placeholder="Percentage Value" class="w-full border p-1 rounded my-3" min="1" max="100" />
+              </div>
+              <div *ngIf="form.get('discountType')?.value === 'fixed'">
+                <input type="number" formControlName="fixedValue" placeholder="Fixed Value" class="w-full border p-1 rounded my-3" min="1" />
+              </div>
+  
+              <label>Minimum Order Price</label>
+              <input type="number" formControlName="minOrderPrice" placeholder="Minimum Order Price" min="1" class="w-full border p-1 rounded" />
+            </div>
+  
+            <div>
+              <h2 class="font-semibold mb-3">Limits & Redemption</h2>
+              <label>Max Per User</label>
+              <input type="number" formControlName="perUserLimit" min="1" class="w-full border p-1 rounded mb-5" />
+              <label>Max Redemption</label>
+              <input type="number" formControlName="maxRedemption" min="0" class="w-full border p-1 rounded" />
+            </div>
+          </div>
+  
+          <div class="flex justify-end mt-10">
+            <button type="button" (click)="cancelForm()" class="px-6 py-2 border rounded border-gray-300 mr-4 hover:bg-gray-100">Cancel</button>
+            <button type="submit" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-900">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Audit Log Modal -->
+    <div *ngIf="showAuditModal && selectedAudit" class="fixed inset-0 bg-gray-300 bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white rounded p-8 max-w-lg w-full max-h-[80vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-lg font-bold">Audit Log</h2>
+          <button class="text-gray-600" (click)="closeAuditLog()"><i class="fas fa-times"></i></button>
+        </div>
+        <table class="w-full text-sm">
+          <tr><td><b>Coupon Code:</b></td><td>{{selectedAudit.code}}</td></tr>
+          <tr><td><b>Description:</b></td><td>{{selectedAudit.description}}</td></tr>
+          <tr><td><b>Created On:</b></td><td>{{formatDate(selectedAudit.createdOn)}}</td></tr>
+          <tr><td><b>Status:</b></td><td>{{selectedAudit.status}}</td></tr>
+        </table>
+        <div class="mt-6 text-right">
+          <button (click)="closeAuditLog()" class="px-5 py-2 border rounded border-gray-300 hover:bg-gray-100">Close</button>
+        </div>
+      </div>
+    </div>
+  

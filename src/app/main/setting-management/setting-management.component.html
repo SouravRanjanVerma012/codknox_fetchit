@@ -1,0 +1,52 @@
+<div class="min-h-screen bg-gray-50 flex items-center justify-center p-5">
+    <div class="bg-white w-full max-w-3xl mx-auto rounded border border-gray-400 shadow px-0 py-12">
+      <h1 class="text-2xl font-bold text-center mb-6">Settings</h1>
+      <div class="flex flex-col items-center">
+        <!-- Dropdown Selector -->
+        <select
+          [(ngModel)]="selectedType"
+          class="w-80 mb-10 px-4 py-3 rounded-full border border-gray-200 shadow-sm bg-white text-lg font-semibold focus:outline-none"
+        >
+          <option *ngFor="let doc of docs" [value]="doc.type">{{ doc.label }}</option>
+        </select>
+  
+        <!-- Document Details -->
+        <div class="flex flex-col items-center w-full">
+          <h2 class="text-xl font-bold mb-5">{{ selectedDoc.label.replace(' (User)', '') }}</h2>
+          <img
+            src="https://img.icons8.com/ios-filled/200/fa314a/pdf.png"
+            alt="PDF"
+            class="h-32 w-32 mb-3"
+          />
+  
+          <ng-container *ngIf="selectedDoc.pdfData">
+            <div class="mb-2 text-base font-medium text-gray-700">{{ selectedDoc.filename }}</div>
+            <button
+              class="bg-blue-600 hover:bg-blue-800 text-white px-6 py-2 rounded font-bold mb-5"
+              (click)="viewPdf(selectedDoc.pdfData)"
+            >
+              View PDF
+            </button>
+          </ng-container>
+  
+          <label class="w-full max-w-lg">
+            <input
+              type="file"
+              accept="application/pdf"
+              hidden
+              #pdfInput
+              (change)="onFileSelect($event)"
+            />
+            <button
+              class="w-full py-3 mt-2 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold text-lg tracking-wide transition"
+              type="button"
+              (click)="triggerFileInput(pdfInput)"
+            >
+              Choose A Pdf
+            </button>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  

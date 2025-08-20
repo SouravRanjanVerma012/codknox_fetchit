@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>driver</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-148.000000, -495.000000)" fill="#4A3BD8" fill-rule="nonzero">
+            <g id="driver" transform="translate(148.000000, 495.000000)">
+                <path d="M12,0 C5.373,0 0,5.373 0,12 C0,18.627 5.373,24 12,24 C18.627,24 24,18.627 24,12 C24,5.373 18.627,0 12,0 Z M12,3 C15.90525,3 19.20375,5.5155 20.4495,9 L3.5505,9 C4.79625,5.5155 8.09475,3 12,3 Z M12,13.5 C11.17125,13.5 10.5,12.82875 10.5,12 C10.5,11.17125 11.17125,10.5 12,10.5 C12.82875,10.5 13.5,11.17125 13.5,12 C13.5,12.82875 12.82875,13.5 12,13.5 Z M3,12 C7.09875,12 10.41825,15.9495 10.488,20.84775 C6.246,20.121 3,16.4445 3,12 Z M13.512,20.84775 C13.58175,15.9495 16.90125,12 21,12 C21,16.4445 17.754,20.121 13.512,20.84775 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

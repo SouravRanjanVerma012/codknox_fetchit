@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>vuesax/linear/eye-slash</title>
+    <g id="line" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Security" transform="translate(-173.000000, -189.000000)">
+            <g id="eye-slash" transform="translate(172.000000, 188.000000)">
+                <path d="M9.47004414,14.5300436 C8.82004416,13.8800436 8.42004395,12.9900439 8.42004395,12.0000439 C8.42004395,10.0200438 10.0200438,8.42004395 12.0000439,8.42004395 C12.9900439,8.42004395 13.8800436,8.82004416 14.5300436,9.47004414 L9.47004414,14.5300436 Z" id="Vector" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0" fill-rule="nonzero"></path>
+                <path d="M17.8199654,5.76998043 C16.0699654,4.44998038 14.0699656,3.72998047 11.9999657,3.72998047 C8.4699657,3.72998047 5.17996573,5.80998039 2.88996577,9.4099803 C1.9899658,10.8199803 1.9899658,13.1899813 2.88996577,14.5999813 C3.67996579,15.8399813 4.59996557,16.9099814 5.59996557,17.7699814" id="Vector" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0" fill-rule="nonzero"></path>
+                <path d="M8.42004395,19.5300541 C9.56004393,20.0100541 10.7700438,20.2700539 12.0000439,20.2700539 C15.5300438,20.2700539 18.8200445,18.1900539 21.1100445,14.590054 C22.0100445,13.1800541 22.0100445,10.8100535 21.1100445,9.4000535 C20.7800445,8.88005352 20.4200439,8.39005372 20.0500431,7.93005371" id="Vector" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0" fill-rule="nonzero"></path>
+                <path d="M15.5099421,12.6999512 C15.2499421,14.1099511 14.0999414,15.2599518 12.6899414,15.5199518" id="Vector" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0" fill-rule="nonzero"></path>
+                <line x1="9.47000027" y1="14.5300293" x2="2" y2="22.0000296" id="Vector" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"></line>
+                <line x1="22.0000296" y1="2" x2="14.5300293" y2="9.47000027" id="Vector" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"></line>
+                <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z" id="Vector" opacity="0" transform="translate(12.000000, 12.000000) rotate(-180.000000) translate(-12.000000, -12.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

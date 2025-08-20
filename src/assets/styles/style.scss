@@ -1,0 +1,99 @@
+/*
+Template Name: Material Pro Admin
+Author: Themedesigner
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+/**
+ * Table Of Content
+ *
+ * 	1. Globals
+ *	2. Headers
+ *	3. Navigations
+ *	4. Banners
+ *	5. Footers
+ *	6. app
+ *	7. Widgets
+ *	8. Custom Templates
+ */
+
+@import 'variable';
+
+@import 'spinner';
+@import 'app';
+@import 'header';
+@import 'pages';
+@import 'sidebar';
+@import 'responsive';
+
+// @import "../styles/icons/material-design-iconic-font/css/materialdesignicons.min.css";
+
+.success {
+    background: #f8f8ff;
+    color:#009B57;
+  }
+  .failure {
+    background: #f8f8ff;
+    color:#ec0606;
+  }
+
+  .mat-snack-bar-container {
+    // margin: 74px !important; 
+    margin-top: 68px;
+    margin-right: 36px;
+  }
+
+  .ngx-datatable.bootstrap .datatable-footer .datatable-pager a  {
+    background: #7d7878 !important;
+    color: white !important;
+  }
+  .datatable-body-cell-label{
+    color:black!important;
+  }
+  .ngx-datatable .datatable-body .datatable-body-row{
+    background:white!important;
+  }
+  .swal2-styled {
+    margin: .3125em;
+    padding: 5px 20px !important;
+    box-shadow: none;
+    font-weight: 500;
+}
+.swal2-title {
+  position: relative;
+  max-width: 100%;
+  margin: 0 0 .4em;
+  padding: 0;
+  color: #595959;
+  font-size: 22px !important;
+  font-weight: 600;
+  text-align: center;
+  text-transform: none;
+  word-wrap: break-word;
+}
+.modal-header .btn:hover {
+   color:#000; 
+  text-decoration: none;
+}
+.aal_download_btn label{
+  cursor: pointer !important;
+}
+.red_btn{
+  background-color: #ec0606 !important;
+}
+.red_icon{
+  color:#ec0606;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+// daarlo
+.add_btn {
+  background: $theme_btn;
+  color: #fff;
+  border: 1px solid $theme_btn;
+  padding: 5px 10px;
+  float:right;
+  cursor: pointer;
+  border-radius: 25px;
+}

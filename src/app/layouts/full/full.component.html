@@ -1,0 +1,84 @@
+<mat-sidenav-container class="h-screen" color="primary">
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    opened
+    class="w-60 bg-primary text-white mat-elevation-z8 overflow-y-auto app-scroll"
+  >
+    <!-- <div class="h-16 flex items-center px-4 border-b">
+			<img src="/assets/images/ADMIN.svg" class="h-8" alt="Logo" />
+		</div> -->
+    <h1
+      class="text-white text-[22px] leading-tight font-semibold text-center px-6 py-4 font-adminHeading tracking-wide"
+    >
+      <span class="material-icons align-middle  mr-2">supervisor_account</span>
+      Admin Panel
+    </h1>
+    <mat-nav-list class="text-left">
+      <a mat-list-item routerLink="/main/dashboard">
+        <mat-icon matListItemIcon>dashboard_customize</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/main/merchant-service">
+        <mat-icon matListItemIcon>storefront</mat-icon>
+        <span>Managemnt merchent</span>
+      </a>
+      <a mat-list-item routerLink="/main/user-management">
+        <mat-icon matListItemIcon>group</mat-icon>
+        <span>Users</span>
+      </a>
+      <a mat-list-item routerLink="/main/transaction-history">
+        <mat-icon matListItemIcon>receipt_long</mat-icon>
+        <span>Invoices</span>
+      </a>
+      <a mat-list-item routerLink="/main/order-management">
+        <mat-icon matListItemIcon>shopping_bag</mat-icon>
+        <span>Orders</span>
+      </a>
+      <a mat-list-item routerLink="/main/promo-management">
+        <mat-icon matListItemIcon>local_offer</mat-icon>
+        <span>Manage Coupons</span>
+      </a>
+      <a mat-list-item routerLink="/main/category-management">
+        <mat-icon matListItemIcon>category</mat-icon>
+        <span>Manage Store Cateogory</span>
+      </a>
+      <a mat-list-item routerLink="/main/product-category-management">
+        <mat-icon matListItemIcon>category</mat-icon>
+        <span>Manage Products Cateogory</span>
+      </a>
+      <a mat-list-item routerLink="/main/banner-management">
+        <mat-icon matListItemIcon>image</mat-icon>
+        <span>Manage Banners</span>
+      </a>
+      <a mat-list-item routerLink="/main/setting-management">
+        <mat-icon matListItemIcon>settings</mat-icon>
+        <span>Settings</span>
+      </a>
+       <a mat-list-item routerLink="/main/Charts">
+        <mat-icon matListItemIcon>Charts</mat-icon>
+        <span>Charts</span>
+      </a>
+      <button mat-list-item (click)="onLogout()" class="text-left">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="mat-elevation-z8">
+      <button mat-icon-button (click)="sidenav.toggle()" class="md:hidden mr-2">
+        <div>
+          <mat-icon>menu_open</mat-icon>
+        </div>
+      </button>
+      <span>Welcome Admin</span>
+    </mat-toolbar>
+    <div
+      class="p-4 bg-gray-100 h-[calc(100vh-64px)] overflow-y-auto app-scroll"
+    >
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

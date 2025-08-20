@@ -1,0 +1,206 @@
+<div class="content">
+	<app-spinner *ngIf="isLoading"></app-spinner>
+	<div class="container-fluid">
+	  <!-- <div class="row" *ngIf="isAccessMerchant == true">
+		<div class="col-md-12">
+		  <div class="fluterwarning w-100"  *ngIf="showWarning==true"><i class="fa fa-warning"></i> <span> Your Flutterwave Balance is low. Please add balance to your flutterwave account to initiate payout process. </span><br><button (click)="initiatePayout()" class="btn btn-success mt-4">Click here after adding banalce to initiate payout</button></div>
+		  <a (click)="naviate('AddMerchant')" class="add_btn">
+			<span class="add_icon"
+			  ><i class="fa fa-plus" aria-hidden="true"></i
+			></span>
+			Add Merchant</a
+		  >
+		</div>
+	  </div> -->
+	  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+		<div class="px-2">
+		  <div class="rounded-xl shadow-md bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg mt-4">
+			<div
+			  (click)="navigate('User')"
+			  class="bg-white rounded-xl p-5 pb-0"
+			>
+			  <p class="text-gray-500 text-xs font-semibold font-sans">Registered Users</p>
+			  <h3 class="text-black text-3xl font-semibold font-sans">{{ dashboardData?.totalUser || "0" }}</h3>
+			  <div class="text-right">
+				<img
+				  class="w-[70px] inline-block"
+				  src="../../../assets/images/users.png"
+				/>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="px-2">
+		  <div class="rounded-xl shadow-md bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg mt-4">
+			<div
+			  (click)="navigate('Merchant')"
+			  class="bg-white rounded-xl p-5 pb-0"
+			>
+			 
+			  <p class="text-gray-500 text-xs font-semibold font-sans">Registered Merchants</p>
+			  <h3 class="text-black text-3xl font-semibold font-sans">{{ dashboardData?.totalVendor || "0" }}</h3>
+			  <div class="text-right">
+				<img
+				  class="w-[70px] inline-block"
+				  src="../../../assets/images/merchants.png"
+				/>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="px-2">
+		  <div class="rounded-xl shadow-md bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg mt-4">
+			<div
+			  (click)="navigate('Driver')"
+			  class="bg-white rounded-xl p-5 pb-0"
+			>
+			 
+			  <p class="text-gray-500 text-xs font-semibold font-sans">Total Drivers</p>
+			  <h3 class="text-black text-3xl font-semibold font-sans">{{ dashboardData?.totalDriver || "0" }}</h3>
+			  <div class="text-right">
+				<img
+				  class="w-[70px] inline-block"
+				  src="../../../assets/images/drivers.png"
+				/>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	   
+		<div class="px-2">
+		  <div class="rounded-xl shadow-md bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg mt-4">
+			<div
+			  (click)="navigate('Order')"
+			  class="bg-white rounded-xl p-5 pb-0"
+			>
+			 
+			  <p class="text-gray-500 text-xs font-semibold font-sans">Order Placed</p>
+			  <h3 class="text-black text-3xl font-semibold font-sans">{{ dashboardData?.totalOrder || "0" }}</h3>
+			  <div class="text-right">
+				<img
+				  class="w-[70px] inline-block"
+				  src="../../../assets/images/order.png"
+				/>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-3">
+		<div class="px-2">
+		  <div class="rounded-xl shadow-md bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg mt-4">
+			<div
+			  (click)="navigate('Pickup')"
+			  class="bg-white rounded-xl p-5 pb-0"
+			>
+			  
+			  <p class="text-gray-500 text-xs font-semibold font-sans">Pickup/Delivery Requests</p>
+			  <h3 class="text-black text-3xl font-semibold font-sans">
+				{{ dashboardData?.pickUpAndDeliveryOrder || "0" }}
+			  </h3>
+			  <div class="text-right">
+				<img
+				  class="w-[70px] inline-block"
+				  src="../../../assets/images/pickup.png"
+				/>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="px-2">
+		  <div class="rounded-xl shadow-md bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg mt-4">
+			<div
+			  (click)="navigate('overdues')"
+			  class="bg-white rounded-xl p-5 pb-0"
+			>
+			  
+			  <p class="text-gray-500 text-xs font-semibold font-sans">Overdue Accounts</p>
+			  <h3 class="text-black text-3xl font-semibold font-sans">
+				{{ dashboardData?.freezedDriver || "0" }}
+			  </h3>
+			  <div class="text-right">
+				<img
+				  class="w-[70px] inline-block"
+				  src="../../../assets/images/overdue.png"
+				/>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="px-2">
+		  <div class="rounded-xl shadow-md bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg mt-4">
+			<div
+			  (click)="navigate('Coupon')"
+			  class="bg-white rounded-xl p-5 pb-0"
+			>
+			 
+			  <p class="text-gray-500 text-xs font-semibold font-sans">Total Coupon</p>
+			  <h3 class="text-black text-3xl font-semibold font-sans">
+				{{
+				  dashboardData?.totalCoupon ||
+					"0"
+				}}
+			  </h3>
+			  <div class="text-right">
+				<img
+				  class="w-[70px] inline-block"
+				  src="../../../assets/images/copon.png"
+				/>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="px-2">
+		  <div class="rounded-xl shadow-md bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg mt-4">
+			<div
+			  (click)="navigate('Invoice')"
+			  class="bg-white rounded-xl p-5 pb-0"
+			>
+			  
+			  <p class="text-gray-500 text-xs font-semibold font-sans">Total Revenue</p>
+			  <h3 class="text-black text-3xl font-semibold font-sans">
+				₹{{ dashboardData?.totalRevenue?.toFixed(2) || "0" }}
+			  </h3>
+			  <div class="text-right">
+				<img
+				  class="w-[70px] inline-block"
+				  src="../../../assets/images/revenue.png"
+				/>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+		<div class="px-2 lg:col-span-4">
+		  <div class="rounded-xl shadow-md bg-white transition-all duration-300 ease-in-out hover:shadow-lg mt-4 p-4">
+			<div class="flex flex-wrap items-center gap-4">
+			  <h2 class="text-gray-900 text-lg font-semibold flex items-center mr-auto">
+				<svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+				  <path d="M6 2h9a2 2 0 0 1 2 2v16l-3-2-3 2-3-2-3 2V4a2 2 0 0 1 2-2z" stroke-linecap="round" stroke-linejoin="round"/>
+				  <path d="M8 6h8M8 10h8M8 14h5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+				Store Invoices
+			  </h2>
+			  <input type="text" placeholder="Enter Order No." class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[180px]" />
+			  <input type="text" placeholder="Enter Driver-Name" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[180px]" />
+			  <input type="date" placeholder="Start date" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[180px]" />
+			  <input type="date" placeholder="End date" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[180px]" />
+			  <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md flex items-center justify-center leading-none">
+				<svg class="w-5 h-5 mr-2 align-middle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0112.548-5.303L19.5 9M19.5 9V4.5M19.5 9h-4.5M19.5 12a7.5 7.5 0 01-12.548 5.303L4.5 15M4.5 15V19.5M4.5 15H9" />
+				</svg>
+				Refresh
+			  </button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  <div class="row" *ngIf="isAccess==true">
+		<div class="col-md-12">
+		  <app-dashboard-invoice></app-dashboard-invoice>
+		</div>
+	  </div>
+	</div>
+  </div>
+  

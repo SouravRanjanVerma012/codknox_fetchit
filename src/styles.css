@@ -1,0 +1,72 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+/* App-wide scroll styling (uses Material theme tokens) */
+.app-scroll {
+	overflow: auto;
+}
+
+@supports (scrollbar-color: auto) {
+	.app-scroll {
+		/* thumb color | track color */
+		scrollbar-color: var(--mat-sys-primary, #3f51b5) var(--mat-sys-primary-container, #c5cae9);
+	}
+}
+
+/* Tailwind-based scroll box utility that works anywhere */
+.scroll-box {
+    overflow: auto;
+    width: 20rem; /* w-80 */
+    height: 5rem; /* h-20 */
+    margin: 2rem auto; /* mx-auto my-8 */
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace; /* font-mono */
+    padding: 1rem; /* p-4 */
+    border-width: 2px;
+    border-color: var(--mat-sys-primary, #3f51b5);
+}
+
+@supports (scrollbar-color: auto) {
+    .scroll-box {
+        scrollbar-color: var(--mat-sys-primary, #3f51b5) var(--mat-sys-primary-container, #c5cae9);
+    }
+}
+
+@supports selector(::-webkit-scrollbar) {
+    .scroll-box::-webkit-scrollbar {
+        background: var(--mat-sys-primary-container, #c5cae9);
+        width: 8px;
+        height: 8px;
+    }
+    .scroll-box::-webkit-scrollbar-thumb {
+        background: var(--mat-sys-primary, #3f51b5);
+        border-radius: 8px;
+    }
+    .scroll-box::-webkit-scrollbar-thumb:hover {
+        background: color-mix(in srgb, var(--mat-sys-primary, #3f51b5) 85%, white);
+    }
+    
+    .app-scroll::-webkit-scrollbar {
+        background: var(--mat-sys-primary-container, #c5cae9);
+        width: 8px;
+        height: 8px;
+    }
+    .app-scroll::-webkit-scrollbar-thumb {
+        background: var(--mat-sys-primary, #3f51b5);
+        border-radius: 8px;
+    }
+    .app-scroll::-webkit-scrollbar-thumb:hover {
+        background: color-mix(in srgb, var(--mat-sys-primary, #3f51b5) 85%, white);
+    }
+}
