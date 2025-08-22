@@ -1,61 +1,61 @@
 <mat-sidenav-container class="h-screen" color="primary">
-  <mat-sidenav
-    #sidenav
-    mode="side"
-    opened
+  <mat-sidenav 
+    #sidenav 
+    mode="side" 
+    [opened]="sidebarOpen"
     class="w-60 bg-primary text-white mat-elevation-z8 overflow-y-auto app-scroll"
   >
     <!-- <div class="h-16 flex items-center px-4 border-b">
-			<img src="/assets/images/ADMIN.svg" class="h-8" alt="Logo" />
-		</div> -->
+      <img src="/assets/images/ADMIN.svg" class="h-8" alt="Logo" />
+    </div> -->
     <h1
       class="text-white text-[22px] leading-tight font-semibold text-center px-6 py-4 font-adminHeading tracking-wide"
     >
-      <span class="material-icons align-middle  mr-2">supervisor_account</span>
+      <span class="material-icons align-middle mr-2">supervisor_account</span>
       Admin Panel
     </h1>
     <mat-nav-list class="text-left">
-      <a mat-list-item routerLink="/main/dashboard">
+      <a mat-list-item routerLink="/main/dashboard" (click)="sidebarOpen = false">
         <mat-icon matListItemIcon>dashboard_customize</mat-icon>
         <span>Dashboard</span>
       </a>
-      <a mat-list-item routerLink="/main/merchant-service">
+      <a mat-list-item routerLink="/main/merchant-service" (click)="sidebarOpen = false">
         <mat-icon matListItemIcon>storefront</mat-icon>
-        <span>Managemnt merchent</span>
+        <span>Management merchant</span>
       </a>
-      <a mat-list-item routerLink="/main/user-management">
+      <a mat-list-item routerLink="/main/user-management" (click)="sidebarOpen = false">
         <mat-icon matListItemIcon>group</mat-icon>
         <span>Users</span>
       </a>
-      <a mat-list-item routerLink="/main/transaction-history">
+      <a mat-list-item routerLink="/main/transaction-history" (click)="sidebarOpen = false">
         <mat-icon matListItemIcon>receipt_long</mat-icon>
         <span>Invoices</span>
       </a>
-      <a mat-list-item routerLink="/main/order-management">
+      <a mat-list-item routerLink="/main/order-management" (click)="sidebarOpen = false">
         <mat-icon matListItemIcon>shopping_bag</mat-icon>
         <span>Orders</span>
       </a>
-      <a mat-list-item routerLink="/main/promo-management">
+      <a mat-list-item routerLink="/main/promo-management" (click)="sidebarOpen = false">
         <mat-icon matListItemIcon>local_offer</mat-icon>
         <span>Manage Coupons</span>
       </a>
-      <a mat-list-item routerLink="/main/category-management">
+      <a mat-list-item routerLink="/main/category-management" (click)="sidebarOpen = false">
         <mat-icon matListItemIcon>category</mat-icon>
-        <span>Manage Store Cateogory</span>
+        <span>Manage Store Category</span>
       </a>
-      <a mat-list-item routerLink="/main/product-category-management">
+      <a mat-list-item routerLink="/main/product-category-management" (click)="sidebarOpen = false">
         <mat-icon matListItemIcon>category</mat-icon>
-        <span>Manage Products Cateogory</span>
+        <span>Manage Products Category</span>
       </a>
-      <a mat-list-item routerLink="/main/banner-management">
+      <a mat-list-item routerLink="/main/banner-management" (click)="sidebarOpen = false">
         <mat-icon matListItemIcon>image</mat-icon>
         <span>Manage Banners</span>
       </a>
-      <a mat-list-item routerLink="/main/setting-management">
+      <a mat-list-item routerLink="/main/setting-management" (click)="sidebarOpen = false">
         <mat-icon matListItemIcon>settings</mat-icon>
         <span>Settings</span>
       </a>
-       <a mat-list-item routerLink="/main/Charts">
+      <a mat-list-item routerLink="/main/Charts" (click)="sidebarOpen = false">
         <mat-icon matListItemIcon>Charts</mat-icon>
         <span>Charts</span>
       </a>
@@ -67,17 +67,16 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar color="primary" class="mat-elevation-z8">
-      <button mat-icon-button (click)="sidenav.toggle()" class="md:hidden mr-2">
-        <div>
-          <mat-icon>menu_open</mat-icon>
-        </div>
-      </button>
-      <span>Welcome Admin</span>
+    <mat-toolbar color="primary" class="mat-elevation-z8 flex items-center">
+      <div class="marfin-left-5px !important">
+        <button mat-icon-button (click)="toggleSidebar()" class="mr-2">
+          <mat-icon >menu_open</mat-icon>
+        </button>
+      </div>
+      <span class="flex-1 ml-1">Welcome Admin</span>
     </mat-toolbar>
-    <div
-      class="p-4 bg-gray-100 h-[calc(100vh-64px)] overflow-y-auto app-scroll"
-    >
+
+    <div class="p-4 bg-gray-100 h-[calc(100vh-64px)] overflow-y-auto app-scroll">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

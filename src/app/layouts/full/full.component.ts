@@ -7,6 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../shared/services/auth.service';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-full',
@@ -25,9 +28,15 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrl: './full.component.css'
 })
 export class FullComponent {
-  sidebarOpen: boolean = true;
+  sidebarOpen: boolean = false; // Start closed
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.sidebarOpen = false;
+      });
+  }
 
   toggleSidebar(): void {
     this.sidebarOpen = !this.sidebarOpen;

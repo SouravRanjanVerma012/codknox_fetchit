@@ -7,20 +7,20 @@
     </div>
   
     <form [formGroup]="filterForm" class="flex flex-wrap gap-3 mb-4">
-      <select formControlName="status" class="border rounded px-3 py-1 text-gray-700">
+      <select formControlName="status" class="flex-1/1 border rounded px-3 py-1 text-gray-700">
         <option value="Active">Active</option>
         <option value="Inactive">Inactive</option>
         <option value="All">All</option>
       </select>
-      <select formControlName="type" class="border rounded px-3 py-1 text-gray-700">
+      <select formControlName="type" class="flex-1/1 border rounded px-3 py-1 text-gray-700">
         <option value="All">All Type</option>
         <option value="coupon">Coupon</option>
         <option value="promo">Promo</option>
       </select>
-      <input formControlName="code" placeholder="Enter coupon code" class="border rounded px-3 py-1 w-56" />
-      <input type="date" formControlName="from" class="border rounded px-3 py-1 text-gray-700" />
-      <input type="date" formControlName="to" class="border rounded px-3 py-1 text-gray-700" />
-      <button type="button" class="rounded border border-blue-400 px-3 py-1 text-blue-600 hover:bg-blue-100" (click)="applyFilters()">
+      <input formControlName="code" placeholder="Enter coupon code" class="flex-1/1 border rounded px-3 py-1 w-56" />
+      <input type="date" formControlName="from" class="flex-1/1 border rounded px-3 py-1 text-gray-700" />
+      <input type="date" formControlName="to" class="flex-1/1 border rounded px-3 py-1 text-gray-700" />
+      <button type="button" class="flex-1/1 rounded border border-blue-400 px-3 py-1 text-blue-600 hover:bg-blue-100" (click)="applyFilters()">
         <i class="fas fa-sync-alt"></i>
       </button>
     </form>

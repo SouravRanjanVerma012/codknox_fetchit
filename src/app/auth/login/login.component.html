@@ -1,28 +1,27 @@
-﻿<section class="flex h-screen">
+﻿<section class="flex flex-col md:flex-row h-screen">
   <!-- Left Half -->
-  <div
-    class="w-1/2 bg-blue-300 flex items-center justify-center shadow-2xl animate-fadeIn"
-  >
-    <article>
-      <img class="w-64 h-32" src="/assets/images/ADMIN.svg" alt="Admin Logo" />
-     
+  <div class="w-full md:w-1/2 bg-blue-300 flex items-center justify-center shadow-2xl py-8 md:py-0 animate-fadeIn">
+    <article class="flex flex-col items-center px-6 md:px-0">
+      <img class="w-40 h-16 md:w-64 md:h-32" src="/assets/images/ADMIN.svg" alt="Admin Logo" />
+      <div class="mt-6 text-white text-base md:text-xl font-semibold tracking-wide">
+        
+      </div>
+      <!-- <div class="mt-4 flex gap-6 justify-center">
+        <img src="/assets/images/cart.svg" alt="Cart icon" class="w-6 h-6 md:w-8 md:h-8" />
+        <img src="/assets/images/bucket.svg" alt="Bucket icon" class="w-6 h-6 md:w-8 md:h-8" />
+        <img src="/assets/images/truck.svg" alt="Truck icon" class="w-6 h-6 md:w-8 md:h-8" />
+      </div> -->
     </article>
   </div>
 
   <!-- Right Half -->
-  <div class="w-1/2 bg-white flex items-center justify-center">
-    <div class="w-full max-w-md mx-4 animate-fadeIn">
+  <div class="w-full md:w-1/2 bg-white flex items-center justify-center px-4 md:px-0 overflow-auto">
+    <div class="w-full max-w-md mx-auto animate-fadeIn">
       <!-- Demo Credentials Info -->
-      <div class="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-        <h3 class="text-sm font-semibold text-blue-800 mb-2">
-          Demo Credentials:
-        </h3>
-        <p class="text-xs text-blue-600 mb-2">
-          Email: {{ demoCredentials.email }}
-        </p>
-        <p class="text-xs text-blue-600 mb-2">
-          Password: {{ demoCredentials.password }}
-        </p>
+      <div class="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-center">
+        <h3 class="text-sm font-semibold text-blue-800 mb-2">Demo Credentials:</h3>
+        <p class="text-xs text-blue-600 mb-1">Email: {{ demoCredentials.email }}</p>
+        <p class="text-xs text-blue-600 mb-2">Password: {{ demoCredentials.password }}</p>
         <button
           (click)="fillDemoCredentials()"
           class="text-xs bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors"
@@ -32,61 +31,35 @@
       </div>
 
       <!-- Login Form -->
-      <div *ngIf="LoginFlag == true" class="bg-white rounded-lg shadow-lg p-8">
+      <div *ngIf="LoginFlag == true" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
         <div class="text-center mb-6">
-          <img
-            src="/assets/images/user.png"
-            class="w-24 h-24 mx-auto"
-            alt="User Icon"
-          />
-          <h1
-          class="text-black text-[22px] leading-tight font-semibold text-center px-6 py-4 font-adminHeading tracking-wide"
-        >
-          Admin Panel
-        </h1>
+          <img src="/assets/images/user.png" class="w-20 h-20 md:w-24 md:h-24 mx-auto" alt="User Icon" />
+          <h1 class="text-black text-xl md:text-2xl font-semibold text-center px-4 py-3 font-adminHeading tracking-wide">
+            Admin Panel
+          </h1>
         </div>
 
         <!-- Error Message -->
-        <div
-          *ngIf="errorMessage"
-          class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded"
-        >
+        <div *ngIf="errorMessage" class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
           {{ errorMessage }}
         </div>
 
         <form [formGroup]="loginForm" class="space-y-4">
           <!-- Email Field -->
           <div>
-            <label
-              for="login1"
-              class="block text-sm font-medium text-gray-700 mb-1"
-              >Email</label
-            >
+            <label for="login1" class="block text-sm md:text-base font-medium text-gray-700 mb-1">Email</label>
             <input
               type="text"
               formControlName="userName"
               id="login1"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              [class.border-red-500]="
-                loginForm.get('userName')?.errors &&
-                loginForm.get('userName')?.touched
-              "
+              class="w-full px-3 py-2 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              [class.border-red-500]="loginForm.get('userName')?.errors && loginForm.get('userName')?.touched"
             />
-            <div
-              *ngIf="
-                loginForm.get('userName')?.errors &&
-                loginForm.get('userName')?.touched
-              "
-              class="mt-1"
-            >
-              <span
-                class="text-red-500 text-sm"
-                *ngIf="loginForm.get('userName')?.errors?.['required']"
+            <div *ngIf="loginForm.get('userName')?.errors && loginForm.get('userName')?.touched" class="mt-1">
+              <span class="text-red-500 text-xs md:text-sm" *ngIf="loginForm.get('userName')?.errors?.['required']"
                 >* Email is required</span
               >
-              <span
-                class="text-red-500 text-sm"
-                *ngIf="loginForm.get('userName')?.errors?.['pattern']"
+              <span class="text-red-500 text-xs md:text-sm" *ngIf="loginForm.get('userName')?.errors?.['pattern']"
                 >* Invalid email</span
               >
             </div>
@@ -94,48 +67,21 @@
 
           <!-- Password Field -->
           <div>
-            <label
-              for="Password"
-              class="block text-sm font-medium text-gray-700 mb-1"
-              >Password</label
-            >
+            <label for="Password" class="block text-sm md:text-base font-medium text-gray-700 mb-1">Password</label>
             <div class="relative">
               <input
                 [type]="show ? 'text' : 'password'"
                 formControlName="password"
-                class="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                [class.border-red-500]="
-                  loginForm.get('password')?.errors &&
-                  loginForm.get('password')?.touched
-                "
+                class="w-full px-3 py-2 md:py-3 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                [class.border-red-500]="loginForm.get('password')?.errors && loginForm.get('password')?.touched"
               />
-              <button
-                type="button"
-                (click)="password()"
-                class="absolute inset-y-0 right-0 pr-3 flex items-center"
-              >
-                <img
-                  *ngIf="!show"
-                  src="/assets/images/eye-slash.svg"
-                  class="h-5 w-5 text-gray-400"
-                />
-                <img
-                  *ngIf="show"
-                  src="/assets/images/eye.svg"
-                  class="h-5 w-5 text-gray-400"
-                />
+              <button type="button" (click)="password()" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                <img *ngIf="!show" src="/assets/images/eye-slash.svg" class="h-5 w-5 text-gray-400" />
+                <img *ngIf="show" src="/assets/images/eye.svg" class="h-5 w-5 text-gray-400" />
               </button>
             </div>
-            <div
-              *ngIf="
-                loginForm.get('password')?.errors &&
-                loginForm.get('password')?.touched
-              "
-              class="mt-1"
-            >
-              <span
-                class="text-red-500 text-sm"
-                *ngIf="loginForm.get('password')?.errors?.['required']"
+            <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="mt-1">
+              <span class="text-red-500 text-xs md:text-sm" *ngIf="loginForm.get('password')?.errors?.['required']"
                 >* Password is required</span
               >
             </div>
@@ -147,30 +93,24 @@
               type="submit"
               [disabled]="!loginForm.valid || isLoading"
               (click)="login()"
-              class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              class="w-full bg-blue-600 text-white py-2 md:py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {{ isLoading ? "Logging In..." : "Log In" }}
+              {{ isLoading ? 'Logging In...' : 'Log In' }}
             </button>
           </div>
         </form>
 
         <div class="mt-4 text-center">
-          <a
-            (click)="navigatePassword()"
-            class="text-blue-600 hover:text-blue-800 cursor-pointer underline"
+          <a (click)="navigatePassword()" class="text-blue-600 hover:text-blue-800 cursor-pointer underline"
             >Forgot Password?</a
           >
         </div>
       </div>
 
       <!-- Reset Password Form -->
-      <div *ngIf="LoginFlag == false" class="bg-white rounded-lg shadow-lg p-8">
+      <div *ngIf="LoginFlag == false" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
         <div class="text-center mb-6">
-          <img
-            src="/assets/images/user.png"
-            class="w-24 h-24 mx-auto"
-            alt="User Icon"
-          />
+          <img src="/assets/images/user.png" class="w-20 h-20 md:w-24 md:h-24 mx-auto" alt="User Icon" />
         </div>
 
         <form [formGroup]="resetForm" class="space-y-4">
@@ -179,27 +119,14 @@
               type="text"
               formControlName="userName"
               placeholder="Enter Email"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              [class.border-red-500]="
-                resetForm.get('userName')?.errors &&
-                resetForm.get('userName')?.touched
-              "
+              class="w-full px-3 py-2 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              [class.border-red-500]="resetForm.get('userName')?.errors && resetForm.get('userName')?.touched"
             />
-            <div
-              *ngIf="
-                resetForm.get('userName')?.errors &&
-                resetForm.get('userName')?.touched
-              "
-              class="mt-1"
-            >
-              <span
-                class="text-red-500 text-sm"
-                *ngIf="resetForm.get('userName')?.errors?.['required']"
+            <div *ngIf="resetForm.get('userName')?.errors && resetForm.get('userName')?.touched" class="mt-1">
+              <span class="text-red-500 text-xs md:text-sm" *ngIf="resetForm.get('userName')?.errors?.['required']"
                 >* Email is required</span
               >
-              <span
-                class="text-red-500 text-sm"
-                *ngIf="resetForm.get('userName')?.errors?.['pattern']"
+              <span class="text-red-500 text-xs md:text-sm" *ngIf="resetForm.get('userName')?.errors?.['pattern']"
                 >* Invalid email</span
               >
             </div>
@@ -209,16 +136,14 @@
             type="submit"
             [disabled]="!resetForm.valid"
             (click)="resetPassword()"
-            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="w-full bg-blue-600 text-white py-2 md:py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Submit
           </button>
         </form>
 
         <div class="mt-4 text-center">
-          <a
-            (click)="navigatePassword()"
-            class="text-blue-600 hover:text-blue-800 cursor-pointer underline"
+          <a (click)="navigatePassword()" class="text-blue-600 hover:text-blue-800 cursor-pointer underline"
             >Sign In?</a
           >
         </div>

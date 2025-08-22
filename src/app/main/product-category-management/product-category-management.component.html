@@ -12,7 +12,7 @@
   
     <!-- Filters -->
     <form [formGroup]="filterForm" class="flex flex-wrap gap-4 mb-6">
-      <select formControlName="searchStoreCategory" class="border p-2 rounded w-48">
+      <select formControlName="searchStoreCategory" class="flex-1/1 border p-2 rounded w-48">
         <option value="">All Store Categories</option>
         <option *ngFor="let sc of storeCategories" [value]="sc">{{ sc }}</option>
       </select>
