@@ -7,14 +7,14 @@
 
   <div class="max-w-7xl mx-auto px-4 py-6">
     <form [formGroup]="filterForm" class="flex flex-wrap gap-4 items-center mb-4">
-      <select formControlName="status" class="rounded border border-gray-300 px-3 py-1">
+      <select formControlName="status" class="flex-auto rounded border border-gray-300 px-3 py-1">
         <option value="All">All</option>
         <option value="active">Active</option>
         <option value="blocked">Blocked</option>
       </select>
       <input formControlName="query" type="search" placeholder="Enter Email/Name/Phone" class="border border-gray-300 rounded px-3 py-1" />
       <input formControlName="city" type="search" placeholder="City Name" class="border border-gray-300 rounded px-3 py-1" />
-      <button type="button" class="px-3 py-1 bg-blue-600 text-white rounded" (click)="applyFilters()">
+      <button type="button" class="flex-auto px-3 py-1 bg-blue-600 text-white rounded" (click)="applyFilters()">
         <i class="fas fa-sync-alt"></i>
       </button>
     </form>

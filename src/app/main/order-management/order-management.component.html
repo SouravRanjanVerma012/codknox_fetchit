@@ -7,15 +7,15 @@
   
     <div class="max-w-7xl mx-auto px-4 py-4">
       <form [formGroup]="filterForm" class="flex flex-wrap gap-4 mb-6 items-center">
-        <select formControlName="status" class="rounded border border-gray-300 px-3 py-1 w-36">
+        <select formControlName="status" class="flex-auto rounded border border-gray-300 px-3 py-1 w-36">
           <option value="All">All</option>
           <option value="DELIVERED">Delivered</option>
           <option value="REJECTED">Rejected</option>
         </select>
-        <input formControlName="orderNo" placeholder="Enter Order No." class="border border-gray-300 rounded px-3 py-1 w-44" />
-        <input formControlName="mobileUser" placeholder="Enter Mobile/User-Name" class="border border-gray-300 rounded px-3 py-1 w-44" />
-        <input formControlName="from" type="date" class="border border-gray-300 rounded px-3 py-1 w-40" />
-        <input formControlName="to" type="date" class="border border-gray-300 rounded px-3 py-1 w-40" />
+        <input formControlName="orderNo" placeholder="Enter Order No." class="flex-auto border border-gray-300 rounded px-3 py-1 w-44" />
+        <input formControlName="mobileUser" placeholder="Enter Mobile/User-Name" class="flex-auto border border-gray-300 rounded px-3 py-1 w-44" />
+        <input formControlName="from" type="date" class="flex-auto border border-gray-300 rounded px-3 py-1 w-40" />
+        <input formControlName="to" type="date" class="flex-auto border border-gray-300 rounded px-3 py-1 w-40" />
         <button type="button" (click)="applyFilters()" class="rounded-full border border-blue-300 p-2 text-blue-600 hover:bg-blue-100 cursor-pointer">
           <i class="fas fa-search"></i>
         </button>
