@@ -2,14 +2,28 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/fetchit_clone/**/*",
+      "src": "dist/fetchit_clone/server/server.mjs",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/fetchit_clone/browser/**/*",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
+      "src": "/assets/(.*)",
+      "dest": "/dist/fetchit_clone/browser/assets/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/dist/fetchit_clone/$1"
+      "dest": "/dist/fetchit_clone/server/server.mjs"
     }
-  ]
+  ],
+  "functions": {
+    "dist/fetchit_clone/server/server.mjs": {
+      "maxDuration": 30,
+      "memory": 1024
+    }
+  }
 }
