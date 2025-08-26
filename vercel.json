@@ -19,11 +19,5 @@
       "src": "/(.*)",
       "dest": "/dist/fetchit_clone/server/server.mjs"
     }
-  ],
-  "functions": {
-    "dist/fetchit_clone/server/server.mjs": {
-      "maxDuration": 30,
-      "memory": 1024
-    }
-  }
+  ]
 }
