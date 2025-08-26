@@ -1,0 +1,21 @@
+{
+  "routes": {
+    "/": {},
+    "/login": {},
+    "/main": {},
+    "/main/Charts": {},
+    "/main/banner-management": {},
+    "/main/category-management": {},
+    "/main/dashboard": {},
+    "/main/merchant": {},
+    "/main/merchant-management": {},
+    "/main/merchant-service": {},
+    "/main/order-management": {},
+    "/main/product-category-management": {},
+    "/main/promo-management": {},
+    "/main/setting-management": {},
+    "/main/transaction-history": {},
+    "/main/user-management": {},
+    "/unauthorized": {}
+  }
+}

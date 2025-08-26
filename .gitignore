@@ -2,7 +2,7 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
-/dist
+
 /tmp
 /out-tsc
 /bazel-out
@@ -43,7 +43,7 @@ testem.log
 Thumbs.db
 =======
 # Angular specific
-/dist/
+
 /out-tsc/
 /tmp/
 /coverage/

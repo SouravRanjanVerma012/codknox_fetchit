@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="18px" viewBox="0 0 22 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>vuesax/linear/eye</title>
+    <g id="line" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Security" transform="translate(-109.000000, -191.000000)">
+            <g id="eye" transform="translate(108.000000, 188.000000)">
+                <path d="M12.0000439,15.5800438 C10.0200438,15.5800438 8.42004395,13.9800439 8.42004395,12.0000439 C8.42004395,10.0200438 10.0200438,8.42004395 12.0000439,8.42004395 C13.9800439,8.42004395 15.5800438,10.0200438 15.5800438,12.0000439 C15.5800438,13.9800439 13.9800439,15.5800438 12.0000439,15.5800438 Z" id="Vector" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0" fill-rule="nonzero"></path>
+                <path d="M21.1099663,14.5899706 C22.0099663,13.1799706 22.0099663,10.80997 21.1099663,9.39997005 C18.8199663,5.79997015 15.5299656,3.7199707 11.9999657,3.7199707 C8.4699657,3.7199707 5.17996573,5.79997015 2.88996577,9.39997005 C1.9899658,10.80997 1.9899658,13.1799706 2.88996577,14.5899706 C5.17996573,18.1899705 8.4699657,20.2699718 11.9999657,20.2699718 C15.5299656,20.2699718 18.8199663,18.1899705 21.1099663,14.5899706 Z" id="Vector" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0" fill-rule="nonzero"></path>
+                <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z" id="Vector" opacity="0" transform="translate(12.000000, 12.000000) rotate(-180.000000) translate(-12.000000, -12.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
